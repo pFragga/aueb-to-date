@@ -31,9 +31,11 @@ if __name__ == '__main__':
     # NOTE: this url is subject to change.
     url = 'https://www.aueb.gr/el/content/'\
           'orologio-programma-didaskalias-earinoy-examinoy-2023-2024'
+    print(f'Requesting {url}... ', end='')
     req = make_request(url)
     if req is None:
         exit(1)
+    print('OK.')
 
     soup = BeautifulSoup(req.text, 'html.parser')
     doc_spans = soup.find_all('span', attrs={'class': 'file'})
@@ -45,10 +47,14 @@ if __name__ == '__main__':
     # contains the the link to the pdf file we want.
     href = latest.find_next('a').attrs.get('href')
 
+    print(f'Requesting {href}... ', end='')
     req = make_request(href)
     if req is None:
         exit(1)
+    print('OK.')
 
     filename = sys.argv[1] if len(sys.argv) == 2 else href.split('/')[-1]
+    print(f'Saving file to \'{filename}\'... ', end='')
     with open(filename, 'wb') as f:
         f.write(req.content)
+    print('OK.')
