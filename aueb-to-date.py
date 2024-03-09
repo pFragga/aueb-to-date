@@ -6,7 +6,8 @@ import sys
 
 
 def show_usage() -> None:
-    print('Usage:\n\t[python] ./test.py <filename.pdf>', file=sys.stderr)
+    print('Usage:\n\t[python] ./aueb-to-date.py [filename.pdf]',
+          file=sys.stderr)
 
 
 def make_request(uri: str) -> requests.Response:
@@ -18,14 +19,18 @@ def make_request(uri: str) -> requests.Response:
     return r
 
 
+def strip_fname(uri: str) -> str:
+    return uri.split('/')[-1]
+
+
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
+    if len(sys.argv) > 2:
         show_usage()
         exit()
 
     # NOTE: this url is subject to change.
-    url = 'https://www.aueb.gr/el/content/ \
-            orologio-programma-didaskalias-earinoy-examinoy-2023-2024'
+    url = 'https://www.aueb.gr/el/content/'\
+          'orologio-programma-didaskalias-earinoy-examinoy-2023-2024'
     req = make_request(url)
     if req is None:
         exit(1)
@@ -44,6 +49,6 @@ if __name__ == '__main__':
     if req is None:
         exit(1)
 
-    filename = sys.argv[1] if len(sys.argv) == 2 else None
+    filename = sys.argv[1] if len(sys.argv) == 2 else href.split('/')[-1]
     with open(filename, 'wb') as f:
-        f.write(r.content)
+        f.write(req.content)
