@@ -57,4 +57,5 @@ if __name__ == '__main__':
     print(f'Saving file to \'{filename}\'... ', end='')
     with open(filename, 'wb') as f:
         f.write(req.content)
+        # TODO ^ check if we're about to overwrite something
     print('OK.')
