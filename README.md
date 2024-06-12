@@ -2,18 +2,17 @@
 
 My [university's website](https://aueb.gr) is terrible.
 
-## Requirements
+## Dependencies
 
-* python-requests (you probably already have this installed)
 * [Beautiful Soup][1]
 
 ## Usage
 
 ```
-$ [python] ./aueb-to-date.py [filename.pdf]
+$ [python] aueb-to-date [filename]
 ```
 You may want to schedule a cronjob to do this automatically on a regular basis.
-Here's an [example script][2] that I run in my cron scheduler.
+Here's an [example script][2] that I run in my crontab.
 
 ## Backstory
 
