@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     # NOTE: this url is subject to change.
     url = 'https://www.aueb.gr/el/content/'\
-          'orologio-programma-didaskalias-earinoy-examinoy-2023-2024'
+            'orologio-programma-didaskalias-heimerinoy-examinoy-2024-2025'
     print(f'Requesting {url}... ', end='')
     req = make_request(url)
     if req is None:
