@@ -24,8 +24,7 @@ import sys
 
 
 def show_usage() -> None:
-    print('Usage:\n\t[python] ./aueb-to-date.py [filename.pdf]',
-          file=sys.stderr)
+    print('usage: aueb-to-date [filename]', file=sys.stderr)
 
 
 def make_request(uri: str) -> requests.Response:
@@ -53,7 +52,7 @@ def compute_url() -> str:
     return f'{prefix}-heimerinoy-examinoy-{ac_year}'
 
 
-if __name__ == '__main__':
+def main() -> None:
     if len(sys.argv) > 2:
         show_usage()
         exit()
@@ -87,3 +86,6 @@ if __name__ == '__main__':
         f.write(req.content)
         # TODO ^ check if we're about to overwrite something
     print('OK.')
+
+if __name__ = '__main__':
+    main()
