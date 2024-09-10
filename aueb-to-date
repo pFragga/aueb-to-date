@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 from bs4 import BeautifulSoup
+from datetime import datetime
 import requests
 import sys
 
@@ -40,14 +41,24 @@ def strip_fname(uri: str) -> str:
     return uri.split('/')[-1]
 
 
+def compute_url() -> str:
+    prefix = 'https://www.aueb.gr/el/content/orologio-programma-didaskalias'
+
+    now = datetime.now()
+    ac_year = f'{now.year}-{now.year + 1}'  # In winter: thisYear-nextYear
+
+    if now.month in range(2, 9):
+        ac_year = f'{now.year - 1}-{now.year}'  # In spring: prevYear-thisYear
+        return f'{prefix}-earinoy-examinoy-{ac_year}'
+    return f'{prefix}-heimerinoy-examinoy-{ac_year}'
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 2:
         show_usage()
         exit()
 
-    # NOTE: this url is subject to change.
-    url = 'https://www.aueb.gr/el/content/'\
-            'orologio-programma-didaskalias-heimerinoy-examinoy-2024-2025'
+    url = compute_url()
     print(f'Requesting {url}... ', end='')
     req = make_request(url)
     if req is None:

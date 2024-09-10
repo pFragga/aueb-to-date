@@ -5,7 +5,7 @@
 - [x] on-screen info while requests are being done
 - [ ] warn the user if we are about to overwrite an existing file
 - [ ] check for internet connection before requesting (avoids error messages)
-- [ ] add support for winter semester schedule
+- [x] add support for winter semester schedule
   - [x] hardcoded path
-  - [ ] compute semester and year beforehand
+  - [x] compute semester and year beforehand
 
