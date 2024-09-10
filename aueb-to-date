@@ -87,5 +87,5 @@ def main() -> None:
         # TODO ^ check if we're about to overwrite something
     print('OK.')
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     main()
