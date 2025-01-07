@@ -41,15 +41,17 @@ def strip_fname(uri: str) -> str:
 
 
 def compute_url() -> str:
-    prefix = 'https://www.aueb.gr/el/content/orologio-programma-didaskalias'
-
     now = datetime.now()
-    ac_year = f'{now.year}-{now.year + 1}'  # In winter: thisYear-nextYear
+    prefix = 'https://www.aueb.gr/el/content/orologio-programma-didaskalias'
+    semester = 'earinoy' if now.month in range(3, 10) else 'heimerinoy'
+    ac_year = None
 
-    if now.month in range(2, 9):
-        ac_year = f'{now.year - 1}-{now.year}'  # In spring: prevYear-thisYear
-        return f'{prefix}-earinoy-examinoy-{ac_year}'
-    return f'{prefix}-heimerinoy-examinoy-{ac_year}'
+    if now.month in range(1, 10):
+        ac_year = str(now.year - 1) + '-' + str(now.year)
+    else:
+        ac_year = str(now.year) + '-' + str(now.year + 1)
+
+    return f'{prefix}-{semester}-examinoy-{ac_year}'
 
 
 def main() -> None:
